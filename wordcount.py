@@ -68,14 +68,28 @@ def print_words(filename):
 
 def print_top(filename):
     """Prints the top count listing for the given file."""
-    print(dict(sorted(create_word_dict(filename).items(),
-                      key=lambda x: x[1], reverse=True)))
+    # print(dict(sorted(create_word_dict(filename).items(),
+    #                   key=lambda x: x[1], reverse=True)))
 
-    return dict(sorted(create_word_dict(filename).items(),
+    result = dict(sorted(create_word_dict(filename).items(),
                        key=lambda x: x[1], reverse=True))
+    
+    
+    result_keys_length=len(result.keys())
+    result_keys= [key for key in result]
+    while result_keys_length > 20:
+        result_keys.pop()
+        result_keys_length-=1
+    
+
+    for key in result_keys:
+        print(f"{key}: {result[key]}")
+    
 
 
-# print_top("alice.txt")
+
+
+
 
 
 # This basic command line argument parsing code is provided and calls
